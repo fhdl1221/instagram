@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SignupRequest {
+public class SignUpRequest {
 
     @NotBlank(message = "사용자명을 입력해주세요")
     @Size(min = 3, max = 20, message = "사용자명은 3~20자 가능합니다")
@@ -21,7 +21,7 @@ public class SignupRequest {
     @NotBlank(message = "이메일을 입력해주세요")
     @Email
     private String email;
-    
+
     @NotBlank(message = "이름을 입력해주세요")
     private String name;
 }

@@ -1,6 +1,6 @@
 package com.example.instagram.controller;
 
-import com.example.instagram.dto.request.SignupRequest;
+import com.example.instagram.dto.request.SignUpRequest;
 import com.example.instagram.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,18 +27,20 @@ public class AuthController {
     // 사용자 데이터를 입력받도록 회원가입용 빈 종이 출력
     @GetMapping("/signup")
     public String signupForm(Model model) {
-        model.addAttribute("signUpRequest", new SignupRequest());
+        model.addAttribute("signUpRequest", new SignUpRequest());
         return "auth/signup";
     }
 
     // 사용자 데이터를 받아서 DB에 저장하는 기능
     @PostMapping("/signup")
-    public String signup(@Valid @ModelAttribute SignupRequest signupRequest,
+    public String signup(@Valid @ModelAttribute SignUpRequest signUpRequest,
                          BindingResult bindingResult
     ) {
             if(bindingResult.hasErrors()) {
                 return "auth/signup";
             }
+
+            userService.register(signUpRequest);
 
         return "redirect:/auth/login";
     }
