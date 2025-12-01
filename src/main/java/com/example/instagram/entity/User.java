@@ -41,4 +41,5 @@ public class User extends BaseEntity {
         this.role = role != null ? role : Role.USER;
         this.bio = bio;
     }
+
 }
