@@ -11,4 +11,6 @@ public interface UserService {
     User register(@Valid SignUpRequest signUpRequest);
 
     boolean existsByUsername(String username);
+
+    User findById(Long userId);
 }
