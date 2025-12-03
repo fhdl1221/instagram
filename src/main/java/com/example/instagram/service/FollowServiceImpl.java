@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -45,5 +44,15 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public boolean isFollowing(Long followerId, Long followingUserId) {
         return followRepository.existsByFollowerIdAndFollowingId(followerId, followingUserId);
+    }
+
+    @Override
+    public long countByFollowerId(Long followerId) {
+        return followRepository.countByFollowerId(followerId);
+    }
+
+    @Override
+    public long countByFollowingId(Long followingId) {
+        return followRepository.countByFollowingId(followingId);
     }
 }

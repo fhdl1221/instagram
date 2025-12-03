@@ -60,4 +60,9 @@ public class PostServiceImpl implements PostService {
                 .map(PostResponse::from)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public long countByUserId(Long userId) {
+        return postRepository.countByUserId(userId);
+    }
 }
