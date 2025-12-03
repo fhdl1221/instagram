@@ -9,6 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -28,5 +32,24 @@ public class PostServiceImpl implements PostService {
 
         Post saved = postRepository.save(post);
         return PostResponse.from(saved);
+    }
+
+    @Override
+    public Post findById(Long postId) {
+        return postRepository.findById(postId)
+                .orElseThrow();
+    }
+
+    @Override
+    public PostResponse getPost(Long postId) {
+        Post post = findById(postId);
+        return PostResponse.from(post);
+    }
+
+    @Override
+    public List<PostResponse> getAllPosts() {
+        return postRepository.findAllByOrderByCreatedAtDesc().stream()
+                .map(PostResponse::from)
+                .collect(Collectors.toList());
     }
 }
