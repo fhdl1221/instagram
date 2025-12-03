@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommentCreateRequest {
+public class CommentRequest {
 
     @NotBlank(message = "댓글을 입력해주세요")
     @Size(max = 500)

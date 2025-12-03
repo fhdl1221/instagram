@@ -1,6 +1,6 @@
 package com.example.instagram.controller;
 
-import com.example.instagram.dto.request.CommentCreateRequest;
+import com.example.instagram.dto.request.CommentRequest;
 import com.example.instagram.dto.request.PostCreateRequest;
 import com.example.instagram.dto.response.CommentResponse;
 import com.example.instagram.dto.response.PostResponse;
@@ -51,7 +51,7 @@ public class PostController {
 
         List<CommentResponse> comments = commentService.getComments(id);
         model.addAttribute("post", post);
-        model.addAttribute("commentRequest", new CommentCreateRequest());
+        model.addAttribute("commentRequest", new CommentRequest());
         model.addAttribute("comments", comments);
         return "post/detail";
     }
@@ -59,15 +59,22 @@ public class PostController {
     @PostMapping("/{postId}/comments")
     public String createComment(
             @PathVariable Long postId,
-            @Valid @ModelAttribute CommentCreateRequest commentCreateRequest,
+            @Valid @ModelAttribute CommentRequest commentRequest,
             BindingResult bindingResult,
-            @AuthenticationPrincipal CustomUserDetails userDetails
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            Model model
     ) {
         if(bindingResult.hasErrors()) {
+            PostResponse post = postService.getPost(postId);
+            List<CommentResponse> comments = commentService.getComments(postId);
+
+            model.addAttribute("post", post);
+            model.addAttribute("comments", comments);
+            model.addAttribute("commentRequest", commentRequest);
             return "post/detail";
         }
 
-        commentService.create(postId, commentCreateRequest, userDetails.getId());
+        commentService.create(postId, commentRequest, userDetails.getId());
 
         return "redirect:/posts/" + postId;
     }
