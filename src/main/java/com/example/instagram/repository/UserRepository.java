@@ -1,6 +1,7 @@
 package com.example.instagram.repository;
 
 import com.example.instagram.entity.User;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
