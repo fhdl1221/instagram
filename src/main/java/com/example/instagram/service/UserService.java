@@ -1,7 +1,9 @@
 package com.example.instagram.service;
 
+import com.example.instagram.dto.request.ProfileUpdateRequest;
 import com.example.instagram.dto.request.SignUpRequest;
 import com.example.instagram.dto.response.ProfileResponse;
+import com.example.instagram.dto.response.UserResponse;
 import com.example.instagram.entity.User;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -18,4 +20,8 @@ public interface UserService {
     ProfileResponse getProfile(String username);
 
     User findByUsername(String username);
+
+    UserResponse getUserById(Long userId);
+
+    void updateProfile(Long id, @Valid ProfileUpdateRequest profileUpdateRequest);
 }
