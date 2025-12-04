@@ -6,7 +6,6 @@ import lombok.*;
 @Entity
 @Table(name = "users")
 @Getter
-@Setter
 @NoArgsConstructor
 public class User extends BaseEntity {
 
@@ -42,4 +41,8 @@ public class User extends BaseEntity {
         this.bio = bio;
     }
 
+    public void updateProfile(String name, String bio) {
+        this.name = name;
+        this.bio = bio;
+    }
 }
