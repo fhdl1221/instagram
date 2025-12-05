@@ -11,6 +11,8 @@ import jakarta.validation.constraints.Size;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 public interface UserService {
     User register(@Valid SignUpRequest signUpRequest);
 
@@ -25,4 +27,6 @@ public interface UserService {
     UserResponse getUserById(Long userId);
 
     void updateProfile(Long id, @Valid ProfileUpdateRequest profileUpdateRequest, MultipartFile profileImg);
+
+    List<UserResponse> searchUsers(String trim);
 }
