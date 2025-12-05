@@ -28,5 +28,5 @@ public interface UserService {
 
     void updateProfile(Long id, @Valid ProfileUpdateRequest profileUpdateRequest, MultipartFile profileImg);
 
-    List<UserResponse> searchUsers(String trim);
+    List<UserResponse> searchUsers(String keyword);
 }

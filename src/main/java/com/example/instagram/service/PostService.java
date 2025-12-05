@@ -28,4 +28,6 @@ public interface PostService {
     Slice<PostResponse> getFeedPosts(Long userId, Pageable pageable);
     // 전체게시물 조회
     Slice<PostResponse> getAllPostsPaging(Pageable pageable);
+
+    Slice<PostResponse> searchPosts(String keyword, Pageable pageable);
 }
